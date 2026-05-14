@@ -98,6 +98,7 @@ class CategoricalCrossEntropy(LossFunction):
 
     def backward(self, Y_pred: np.ndarray, Y_true: np.ndarray) -> np.ndarray:
         m = Y_true.shape[0]
+        Y_pred = np.clip(Y_pred, 1e-15, 1 - 1e-15)
         return (Y_pred - Y_true) / m
     
 class DenseLayer:
